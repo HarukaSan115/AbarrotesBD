@@ -18,11 +18,11 @@ public class InicioSesion extends javax.swing.JFrame {
         lblContraseña = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         lblUsuario = new javax.swing.JLabel();
-        txtContraseña = new javax.swing.JTextField();
         lblBienvenida = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
         lblInicioSesion = new javax.swing.JLabel();
+        txtContraseña = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,10 +44,6 @@ public class InicioSesion extends javax.swing.JFrame {
         lblUsuario.setText("Usuario:");
         pBase.add(lblUsuario);
         lblUsuario.setBounds(20, 90, 100, 30);
-
-        txtContraseña.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
-        pBase.add(txtContraseña);
-        txtContraseña.setBounds(140, 140, 160, 30);
 
         lblBienvenida.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         lblBienvenida.setText("<HTML>Bienvenido/a, por favor ingrese usuario y contraseña para ingresar al sistema.<HTML>");
@@ -80,6 +76,10 @@ public class InicioSesion extends javax.swing.JFrame {
         pBase.add(lblInicioSesion);
         lblInicioSesion.setBounds(30, 0, 260, 40);
 
+        txtContraseña.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
+        pBase.add(txtContraseña);
+        txtContraseña.setBounds(140, 140, 160, 30);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,7 +105,7 @@ public class InicioSesion extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         String Usuario = txtUsuario.getText();
-        String Contraseña = txtContraseña.getText();
+        char[] Contraseña = txtContraseña.getPassword();
         Conexion Connect = new Conexion();
         Connect.CrearConexion(Usuario, Contraseña);
 
@@ -159,7 +159,7 @@ public class InicioSesion extends javax.swing.JFrame {
     private javax.swing.JLabel lblInicioSesion;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel pBase;
-    private javax.swing.JTextField txtContraseña;
+    private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
