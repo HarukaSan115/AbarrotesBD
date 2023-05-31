@@ -49,6 +49,18 @@ public class ConsultasBasicas extends javax.swing.JFrame {
         chk6.setVisible(false);
         txtAtr6.setVisible(false);
     }
+    
+    public static boolean isNumeric(String texto){
+        if(texto == null || texto.length() == 0){
+            return false;
+        }
+        try{
+            Integer.parseInt(texto);
+            return true;
+        }catch (NumberFormatException ex){
+            return false;
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -866,11 +878,24 @@ public class ConsultasBasicas extends javax.swing.JFrame {
 
     private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
         String Coleccion = cmbColeccion.getSelectedItem().toString();
+        txaRes.setText("");
         String[] AtrUsar = null;
         Bson filtro1 = null, filtro2 = null, filtro3 = null, filtro4 = null, filtro5 = null, filtro6 = null, filtroConjunto = null;
         JCheckBox[] CkbAtr = {chk1, chk2, chk3, chk4, chk5, chk6};
         JComboBox[] CmbAtr = {cmbPry1, cmbPry2, cmbPry3, cmbPry4, cmbPry5, cmbPry6};
         JTextField[] txtAtr = {txtAtr1, txtAtr2, txtAtr3, txtAtr4, txtAtr5, txtAtr6};
+        Object[] Valorestxt = new Object[txtAtr.length];
+        int arreglo = 0;
+        
+        while(arreglo < txtAtr.length){
+            if(isNumeric(txtAtr[arreglo].getText()) == true){
+                Valorestxt[arreglo] = Integer.parseInt(txtAtr[arreglo].getText());
+            }
+            else{
+                Valorestxt[arreglo] = txtAtr[arreglo].getText();
+            }
+            arreglo++;
+        }
 
         switch (cmbColeccion.getSelectedIndex()) {
             case 0:
@@ -918,35 +943,35 @@ public class ConsultasBasicas extends javax.swing.JFrame {
             if (CkbAtr[a].isSelected()) {
                 switch (CmbAtr[a].getSelectedIndex()) {
                     case 0:
-                        Filtros[a] = Filters.eq(AtrUsar[a], txtAtr[a].getText());
+                        Filtros[a] = Filters.eq(AtrUsar[a], Valorestxt[a]);
                         break;
 
                     case 1:
-                        Filtros[a] = Filters.ne(AtrUsar[a], txtAtr[a].getText());
+                        Filtros[a] = Filters.ne(AtrUsar[a], Valorestxt[a]);
                         break;
 
                     case 2:
-                        Filtros[a] = Filters.gt(AtrUsar[a], txtAtr[a].getText());
+                        Filtros[a] = Filters.gt(AtrUsar[a], Valorestxt[a]);
                         break;
 
                     case 3:
-                        Filtros[a] = Filters.gte(AtrUsar[a], txtAtr[a].getText());
+                        Filtros[a] = Filters.gte(AtrUsar[a], Valorestxt[a]);
                         break;
 
                     case 4:
-                        Filtros[a] = Filters.lt(AtrUsar[a], txtAtr[a].getText());
+                        Filtros[a] = Filters.lt(AtrUsar[a], Valorestxt[a]);
                         break;
 
                     case 5:
-                        Filtros[a] = Filters.lte(AtrUsar[a], txtAtr[a].getText());
+                        Filtros[a] = Filters.lte(AtrUsar[a], Valorestxt[a]);
                         break;
 
                     case 6:
-                        Filtros[a] = Filters.in(AtrUsar[a], txtAtr[a].getText());
+                        Filtros[a] = Filters.in(AtrUsar[a], Valorestxt[a]);
                         break;
 
                     case 7:
-                        Filtros[a] = Filters.nin(AtrUsar[a], txtAtr[a].getText());
+                        Filtros[a] = Filters.nin(AtrUsar[a], Valorestxt[a]);
                         break;
                 }
                 Contador++;
