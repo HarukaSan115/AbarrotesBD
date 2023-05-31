@@ -101,7 +101,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="280" y="340" width="170" height="60"/>
+              <AbsoluteConstraints x="160" y="280" width="170" height="110"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -110,30 +110,15 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tw Cen MT" size="22" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;Consultas&lt;br&gt;Avanzadas&lt;/html&gt;"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;Consultas&lt;br&gt;Predeterminadas&lt;/html&gt;"/>
+            <Property name="actionCommand" type="java.lang.String" value="&lt;html&gt;Consultas&lt;br&gt;Predeterminadas&lt;/html&gt;"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVentasActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="280" y="150" width="170" height="60"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnArticulos">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tw Cen MT" size="22" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Backups"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnArticulosActionPerformed"/>
-          </Events>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="40" y="340" width="170" height="60"/>
+              <AbsoluteConstraints x="280" y="150" width="170" height="110"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -142,7 +127,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tw Cen MT" size="22" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;Consultas&lt;br&gt;Basicas&lt;/html&gt;"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;Consultas&lt;/html&gt;"/>
             <Property name="actionCommand" type="java.lang.String" value=""/>
           </Properties>
           <Events>
@@ -150,7 +135,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="40" y="150" width="170" height="60"/>
+              <AbsoluteConstraints x="40" y="150" width="170" height="110"/>
             </Constraint>
           </Constraints>
         </Component>

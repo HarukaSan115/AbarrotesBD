@@ -28,14 +28,22 @@ public class ConsultasBasicas extends javax.swing.JFrame {
     String[] AtrArV = {"Cantidad", "Codigo articulo", "ID Venta"};
     String[] AtrVen = {"ID Venta", "Total", "Fecha", "No. Empleado", "No. Cliente", "ID Tienda"};
     String[] AtrTie = {"ID Tienda", "Nombre", "Direccion", "Telefono"};
-    
+
+    String[] Emp = {"No_Empleado", "Nombre_Empleado", "Direccion_Empleado", "Telefono_Empleado", "ID_Tienda"};
+    String[] Cli = {"No_Cliente", "Nombre_Cliente", "Direccion_Cliente", "Telefono_Cliente"};
+    String[] Pro = {"NIF", "Nombre_Proveedor", "Empresa", "Direccion_Proveedor", "Telefono_Proveedor"};
+    String[] Com = {"ID_Compra", "Fecha_De_Compra", "Costo_Total", "NIF", "ID_Tienda"};
+    String[] CoA = {"ID_Compra", "Cantidad", "Codigo_Articulo"};
+    String[] Art = {"Codigo_Articulo", "Nombre_Articulo", "Precio_Unitario", "Tipo", "Marca", "Tarifa"};
+    String[] ArV = {"Cantidad", "Codigo_Articulo", "ID_Venta"};
+    String[] Ven = {"ID_Venta", "Total_Pagado", "Fecha_De_Venta", "No_Empleado", "No_Cliente", "ID_Tienda"};
+    String[] Tie = {"ID_Tienda", "Nombre_Tienda", "Direccion_Tienda", "Telefono_Tienda"};
 
     public ConsultasBasicas() {
         this.setLocationRelativeTo(null);
         initComponents();
         NuevaFecha = new FechayHora();
         lblCampoFecha.setText(NuevaFecha.ObtenerFecha());
-        cmbOp5.setVisible(false);
         cmbPry6.setVisible(false);
         chkExcl6.setVisible(false);
         chk6.setVisible(false);
@@ -47,6 +55,9 @@ public class ConsultasBasicas extends javax.swing.JFrame {
     private void initComponents() {
 
         rbgOrden = new javax.swing.ButtonGroup();
+        frmResultados = new javax.swing.JFrame();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txaRes = new javax.swing.JTextArea();
         pTitulo = new javax.swing.JPanel();
         lblMiniSuper = new javax.swing.JLabel();
         lblVentaArti = new javax.swing.JLabel();
@@ -57,15 +68,13 @@ public class ConsultasBasicas extends javax.swing.JFrame {
         cmbColeccion = new javax.swing.JComboBox<>();
         lblConstructor = new javax.swing.JLabel();
         panQuerry = new javax.swing.JPanel();
-        cmbOp1 = new javax.swing.JComboBox<>();
+        cmbOpCen = new javax.swing.JComboBox<>();
         chk2 = new javax.swing.JCheckBox();
         chk4 = new javax.swing.JCheckBox();
         txtAtr3 = new javax.swing.JTextField();
-        cmbOp4 = new javax.swing.JComboBox<>();
         cmbPry1 = new javax.swing.JComboBox<>();
         cmbPry4 = new javax.swing.JComboBox<>();
         cmbPry5 = new javax.swing.JComboBox<>();
-        cmbOp2 = new javax.swing.JComboBox<>();
         cmbPry2 = new javax.swing.JComboBox<>();
         chk1 = new javax.swing.JCheckBox();
         txtAtr5 = new javax.swing.JTextField();
@@ -75,12 +84,11 @@ public class ConsultasBasicas extends javax.swing.JFrame {
         chk3 = new javax.swing.JCheckBox();
         txtAtr4 = new javax.swing.JTextField();
         cmbPry3 = new javax.swing.JComboBox<>();
-        cmbOp3 = new javax.swing.JComboBox<>();
         lblProy = new javax.swing.JLabel();
         chk6 = new javax.swing.JCheckBox();
         cmbPry6 = new javax.swing.JComboBox<>();
         txtAtr6 = new javax.swing.JTextField();
-        cmbOp5 = new javax.swing.JComboBox<>();
+        lblConstructor1 = new javax.swing.JLabel();
         panOrder = new javax.swing.JPanel();
         lblOrder = new javax.swing.JLabel();
         cmbOrder = new javax.swing.JComboBox<>();
@@ -96,6 +104,26 @@ public class ConsultasBasicas extends javax.swing.JFrame {
         chkExcl5 = new javax.swing.JCheckBox();
         chkExcl6 = new javax.swing.JCheckBox();
         btnConsulta = new javax.swing.JButton();
+
+        frmResultados.setTitle("Resultados");
+        frmResultados.setAlwaysOnTop(true);
+        frmResultados.setMinimumSize(new java.awt.Dimension(800, 500));
+        frmResultados.setPreferredSize(new java.awt.Dimension(800, 500));
+        frmResultados.setResizable(false);
+        frmResultados.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                frmResultadosComponentShown(evt);
+            }
+        });
+        frmResultados.getContentPane().setLayout(null);
+
+        txaRes.setColumns(20);
+        txaRes.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        txaRes.setRows(5);
+        jScrollPane1.setViewportView(txaRes);
+
+        frmResultados.getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(10, 70, 670, 330);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(786, 780));
@@ -115,7 +143,7 @@ public class ConsultasBasicas extends javax.swing.JFrame {
 
         lblVentaArti.setFont(new java.awt.Font("Tw Cen MT", 3, 24)); // NOI18N
         lblVentaArti.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblVentaArti.setText("Consultas basicas");
+        lblVentaArti.setText("Consultas");
         pTitulo.add(lblVentaArti);
         lblVentaArti.setBounds(260, 40, 260, 30);
 
@@ -163,16 +191,15 @@ public class ConsultasBasicas extends javax.swing.JFrame {
         panQuerry.setBackground(new java.awt.Color(153, 153, 255));
         panQuerry.setLayout(null);
 
-        cmbOp1.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
-        cmbOp1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "And (&)", "Or (o)", "Nor (Not Or)" }));
-        cmbOp1.setEnabled(false);
-        cmbOp1.addActionListener(new java.awt.event.ActionListener() {
+        cmbOpCen.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        cmbOpCen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "And (&)", "Or (o)", "Nor (Not Or)" }));
+        cmbOpCen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbOp1ActionPerformed(evt);
+                cmbOpCenActionPerformed(evt);
             }
         });
-        panQuerry.add(cmbOp1);
-        cmbOp1.setBounds(60, 80, 228, 22);
+        panQuerry.add(cmbOpCen);
+        cmbOpCen.setBounds(200, 50, 120, 22);
 
         chk2.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
         chk2.setText("Nombre");
@@ -182,7 +209,7 @@ public class ConsultasBasicas extends javax.swing.JFrame {
             }
         });
         panQuerry.add(chk2);
-        chk2.setBounds(20, 110, 120, 22);
+        chk2.setBounds(20, 140, 120, 22);
 
         chk4.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
         chk4.setText("Telefono");
@@ -192,7 +219,7 @@ public class ConsultasBasicas extends javax.swing.JFrame {
             }
         });
         panQuerry.add(chk4);
-        chk4.setBounds(20, 230, 120, 22);
+        chk4.setBounds(20, 240, 120, 22);
 
         txtAtr3.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         txtAtr3.setEnabled(false);
@@ -202,21 +229,10 @@ public class ConsultasBasicas extends javax.swing.JFrame {
             }
         });
         panQuerry.add(txtAtr3);
-        txtAtr3.setBounds(290, 170, 64, 22);
-
-        cmbOp4.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
-        cmbOp4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "And (&)", "Or (o)", "Nor (Not Or)" }));
-        cmbOp4.setEnabled(false);
-        cmbOp4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbOp4ActionPerformed(evt);
-            }
-        });
-        panQuerry.add(cmbOp4);
-        cmbOp4.setBounds(60, 260, 228, 22);
+        txtAtr3.setBounds(290, 190, 64, 22);
 
         cmbPry1.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
-        cmbPry1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equivale a", "No Equivale a", "Mayor a", "Mayor o igual a", "Menor a", "Menor o igual a", "Contiene ", "No contiene ", "Empieza con", "No empieza con", "Termina con", "No termina con", "Es nulo", "No es nulo", " " }));
+        cmbPry1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equivale a", "No Equivale a", "Mayor a", "Mayor o igual a", "Menor a", "Menor o igual a", "Contiene ", "No contiene ", " " }));
         cmbPry1.setEnabled(false);
         cmbPry1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,10 +240,10 @@ public class ConsultasBasicas extends javax.swing.JFrame {
             }
         });
         panQuerry.add(cmbPry1);
-        cmbPry1.setBounds(140, 50, 127, 22);
+        cmbPry1.setBounds(140, 90, 127, 22);
 
         cmbPry4.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
-        cmbPry4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equivale a", "No Equivale a", "Mayor a", "Mayor o igual a", "Menor a", "Menor o igual a", "Contiene ", "No contiene ", "Empieza con", "No empieza con", "Termina con", "No termina con", "Es nulo", "No es nulo", " " }));
+        cmbPry4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equivale a", "No Equivale a", "Mayor a", "Mayor o igual a", "Menor a", "Menor o igual a", "Contiene ", "No contiene " }));
         cmbPry4.setEnabled(false);
         cmbPry4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,10 +251,10 @@ public class ConsultasBasicas extends javax.swing.JFrame {
             }
         });
         panQuerry.add(cmbPry4);
-        cmbPry4.setBounds(140, 230, 127, 22);
+        cmbPry4.setBounds(140, 240, 127, 22);
 
         cmbPry5.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
-        cmbPry5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equivale a", "No Equivale a", "Mayor a", "Mayor o igual a", "Menor a", "Menor o igual a", "Contiene ", "No contiene ", "Empieza con", "No empieza con", "Termina con", "No termina con", "Es nulo", "No es nulo", " " }));
+        cmbPry5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equivale a", "No Equivale a", "Mayor a", "Mayor o igual a", "Menor a", "Menor o igual a", "Contiene ", "No contiene ", " " }));
         cmbPry5.setEnabled(false);
         cmbPry5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -248,14 +264,8 @@ public class ConsultasBasicas extends javax.swing.JFrame {
         panQuerry.add(cmbPry5);
         cmbPry5.setBounds(140, 290, 127, 22);
 
-        cmbOp2.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
-        cmbOp2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "And (&)", "Or (o)", "Nor (Not Or)" }));
-        cmbOp2.setEnabled(false);
-        panQuerry.add(cmbOp2);
-        cmbOp2.setBounds(60, 140, 228, 22);
-
         cmbPry2.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
-        cmbPry2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equivale a", "No Equivale a", "Mayor a", "Mayor o igual a", "Menor a", "Menor o igual a", "Contiene ", "No contiene ", "Empieza con", "No empieza con", "Termina con", "No termina con", "Es nulo", "No es nulo", " " }));
+        cmbPry2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equivale a", "No Equivale a", "Mayor a", "Mayor o igual a", "Menor a", "Menor o igual a", "Contiene ", "No contiene " }));
         cmbPry2.setEnabled(false);
         cmbPry2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,7 +273,7 @@ public class ConsultasBasicas extends javax.swing.JFrame {
             }
         });
         panQuerry.add(cmbPry2);
-        cmbPry2.setBounds(140, 110, 127, 22);
+        cmbPry2.setBounds(140, 140, 127, 22);
 
         chk1.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
         chk1.setText("No. Empleado");
@@ -273,7 +283,7 @@ public class ConsultasBasicas extends javax.swing.JFrame {
             }
         });
         panQuerry.add(chk1);
-        chk1.setBounds(20, 50, 114, 22);
+        chk1.setBounds(20, 90, 114, 22);
 
         txtAtr5.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         txtAtr5.setEnabled(false);
@@ -303,7 +313,7 @@ public class ConsultasBasicas extends javax.swing.JFrame {
             }
         });
         panQuerry.add(txtAtr1);
-        txtAtr1.setBounds(290, 50, 64, 22);
+        txtAtr1.setBounds(290, 90, 64, 22);
 
         txtAtr2.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         txtAtr2.setEnabled(false);
@@ -313,7 +323,7 @@ public class ConsultasBasicas extends javax.swing.JFrame {
             }
         });
         panQuerry.add(txtAtr2);
-        txtAtr2.setBounds(290, 110, 64, 22);
+        txtAtr2.setBounds(290, 140, 64, 22);
 
         chk3.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
         chk3.setText("Direccion");
@@ -323,7 +333,7 @@ public class ConsultasBasicas extends javax.swing.JFrame {
             }
         });
         panQuerry.add(chk3);
-        chk3.setBounds(20, 170, 120, 22);
+        chk3.setBounds(20, 190, 120, 22);
 
         txtAtr4.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         txtAtr4.setEnabled(false);
@@ -333,10 +343,10 @@ public class ConsultasBasicas extends javax.swing.JFrame {
             }
         });
         panQuerry.add(txtAtr4);
-        txtAtr4.setBounds(290, 230, 64, 22);
+        txtAtr4.setBounds(290, 240, 64, 22);
 
         cmbPry3.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
-        cmbPry3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equivale a", "No Equivale a", "Mayor a", "Mayor o igual a", "Menor a", "Menor o igual a", "Contiene ", "No contiene ", "Empieza con", "No empieza con", "Termina con", "No termina con", "Es nulo", "No es nulo", " " }));
+        cmbPry3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equivale a", "No Equivale a", "Mayor a", "Mayor o igual a", "Menor a", "Menor o igual a", "Contiene ", "No contiene " }));
         cmbPry3.setEnabled(false);
         cmbPry3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -344,13 +354,7 @@ public class ConsultasBasicas extends javax.swing.JFrame {
             }
         });
         panQuerry.add(cmbPry3);
-        cmbPry3.setBounds(140, 170, 127, 22);
-
-        cmbOp3.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
-        cmbOp3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "And (&)", "Or (o)", "Nor (Not Or)" }));
-        cmbOp3.setEnabled(false);
-        panQuerry.add(cmbOp3);
-        cmbOp3.setBounds(60, 200, 228, 22);
+        cmbPry3.setBounds(140, 190, 127, 22);
 
         lblProy.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         lblProy.setText("Proyecciones - Querry");
@@ -368,7 +372,7 @@ public class ConsultasBasicas extends javax.swing.JFrame {
         chk6.setBounds(20, 350, 120, 22);
 
         cmbPry6.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
-        cmbPry6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equivale a", "No Equivale a", "Mayor a", "Mayor o igual a", "Menor a", "Menor o igual a", "Contiene ", "No contiene ", "Empieza con", "No empieza con", "Termina con", "No termina con", "Es nulo", "No es nulo", " " }));
+        cmbPry6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equivale a", "No Equivale a", "Mayor a", "Mayor o igual a", "Menor a", "Menor o igual a", "Contiene ", "No contiene " }));
         cmbPry6.setEnabled(false);
         cmbPry6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -388,16 +392,10 @@ public class ConsultasBasicas extends javax.swing.JFrame {
         panQuerry.add(txtAtr6);
         txtAtr6.setBounds(290, 350, 64, 22);
 
-        cmbOp5.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
-        cmbOp5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "And (&)", "Or (o)", "Nor (Not Or)" }));
-        cmbOp5.setEnabled(false);
-        cmbOp5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbOp5ActionPerformed(evt);
-            }
-        });
-        panQuerry.add(cmbOp5);
-        cmbOp5.setBounds(60, 320, 228, 22);
+        lblConstructor1.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
+        lblConstructor1.setText("Operacion Central");
+        panQuerry.add(lblConstructor1);
+        lblConstructor1.setBounds(45, 52, 130, 18);
 
         getContentPane().add(panQuerry);
         panQuerry.setBounds(30, 190, 380, 390);
@@ -496,26 +494,9 @@ public class ConsultasBasicas extends javax.swing.JFrame {
         if (chk2.isSelected()) {
             txtAtr2.setEnabled(true);
             cmbPry2.setEnabled(true);
-            if(chk1.isSelected()){
-                    cmbOp1.setEnabled(true);
-                } 
-            else{
-                cmbOp1.setEnabled(false);
-            }
-            if(chk3.isSelected() || chk4.isSelected() || chk5.isSelected() || chk6.isSelected()){
-                cmbOp2.setEnabled(true);
-            }
-            else{
-                cmbOp2.setEnabled(false);
-            }
-        }
-        else {
-            cmbOp2.setEnabled(false);
+        } else {
             txtAtr2.setEnabled(false);
             cmbPry2.setEnabled(false);
-            if(!chk6.isSelected() && !chk5.isSelected() && !chk4.isSelected() && !chk3.isSelected()){
-                cmbOp1.setEnabled(false);
-            }
         }
     }//GEN-LAST:event_chk2ActionPerformed
 
@@ -523,135 +504,29 @@ public class ConsultasBasicas extends javax.swing.JFrame {
         if (chk3.isSelected()) {
             txtAtr3.setEnabled(true);
             cmbPry3.setEnabled(true);
-            if(chk1.isSelected()){
-                    cmbOp1.setEnabled(true);
-                } 
-            else{
-                cmbOp1.setEnabled(false);
-            }
-            if(chk2.isSelected()){
-                    cmbOp2.setEnabled(true);
-                } 
-            else{
-                cmbOp2.setEnabled(false);
-            }
-            if(chk4.isSelected() || chk5.isSelected() || chk6.isSelected()){
-                cmbOp3.setEnabled(true);
-            }
-            else{
-                cmbOp3.setEnabled(false);
-            }
-        }
-        else {
-            cmbOp3.setEnabled(false);
+        } else {
             txtAtr3.setEnabled(false);
             cmbPry3.setEnabled(false);
-            if(!chk6.isSelected() && !chk5.isSelected() && !chk4.isSelected()){
-                cmbOp2.setEnabled(false);
-            }
-            if(cmbOp1.isEnabled() && (!chk2.isSelected()&&!chk4.isSelected()&&!chk5.isSelected()&&!chk6.isSelected())){
-                cmbOp1.setEnabled(false);
-            }
         }
     }//GEN-LAST:event_chk3ActionPerformed
 
     private void chk4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk4ActionPerformed
-       if (chk4.isSelected()) {
+        if (chk4.isSelected()) {
             txtAtr4.setEnabled(true);
             cmbPry4.setEnabled(true);
-            if(chk1.isSelected()){
-                    cmbOp1.setEnabled(true);
-                } 
-            else{
-                cmbOp1.setEnabled(false);
-            }
-            if(chk2.isSelected()){
-                    cmbOp2.setEnabled(true);
-                } 
-            else{
-                cmbOp2.setEnabled(false);
-            }
-            if(chk3.isSelected()){
-                    cmbOp3.setEnabled(true);
-                } 
-            else{
-                cmbOp3.setEnabled(false);
-            }
-            if(chk5.isSelected() || chk6.isSelected()){
-                cmbOp4.setEnabled(true);
-            }
-            else{
-                cmbOp4.setEnabled(false);
-            }
-        }
-        else {
-            cmbOp4.setEnabled(false);
+        } else {
             txtAtr4.setEnabled(false);
             cmbPry4.setEnabled(false);
-            if(!chk6.isSelected() && !chk5.isSelected()){
-                cmbOp3.setEnabled(false);
-            }
-            if(cmbOp1.isEnabled() && (!chk2.isSelected()&&!chk3.isSelected()&&!chk5.isSelected()&&!chk6.isSelected())){
-                cmbOp1.setEnabled(false);
-            }
-            if(cmbOp2.isEnabled() && (!chk3.isSelected()&&!chk5.isSelected()&&!chk6.isSelected())){
-                cmbOp2.setEnabled(false);
-            }
         }
     }//GEN-LAST:event_chk4ActionPerformed
 
     private void chk5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk5ActionPerformed
-    if (chk5.isSelected()) {
+        if (chk5.isSelected()) {
             txtAtr5.setEnabled(true);
             cmbPry5.setEnabled(true);
-            if(chk1.isSelected()){
-                    cmbOp1.setEnabled(true);
-                } 
-            else{
-                cmbOp1.setEnabled(false);
-            }
-            if(chk2.isSelected()){
-                    cmbOp2.setEnabled(true);
-                } 
-            else{
-                cmbOp2.setEnabled(false);
-            }
-            if(chk3.isSelected()){
-                    cmbOp3.setEnabled(true);
-                } 
-            else{
-                cmbOp3.setEnabled(false);
-            }
-            if(chk4.isSelected()){
-                    cmbOp4.setEnabled(true);
-                } 
-            else{
-                cmbOp4.setEnabled(false);
-            }
-            if(chk6.isSelected()){
-                cmbOp5.setEnabled(true);
-            }
-            else{
-                cmbOp5.setEnabled(false);
-            }
-        }
-        else {
-            cmbOp5.setEnabled(false);
+        } else {
             txtAtr5.setEnabled(false);
             cmbPry5.setEnabled(false);
-            
-            if(!chk6.isSelected()){
-                cmbOp4.setEnabled(false);
-            }
-            if(cmbOp1.isEnabled() && (!chk2.isSelected()&&!chk3.isSelected()&&!chk4.isSelected()&&!chk6.isSelected())){
-                cmbOp1.setEnabled(false);
-            }
-            if(cmbOp2.isEnabled() && (!chk3.isSelected()&&!chk4.isSelected()&&!chk6.isSelected())){
-                cmbOp2.setEnabled(false);
-            }
-             if(cmbOp3.isEnabled() && (!chk4.isSelected()&&!chk6.isSelected())){
-                cmbOp3.setEnabled(false);
-            }
         }
     }//GEN-LAST:event_chk5ActionPerformed
 
@@ -695,13 +570,9 @@ public class ConsultasBasicas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAtr5ActionPerformed
 
-    private void cmbOp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOp1ActionPerformed
+    private void cmbOpCenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOpCenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbOp1ActionPerformed
-
-    private void cmbOp4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOp4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbOp4ActionPerformed
+    }//GEN-LAST:event_cmbOpCenActionPerformed
 
     private void cmbOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOrderActionPerformed
         // TODO add your handling code here:
@@ -711,53 +582,9 @@ public class ConsultasBasicas extends javax.swing.JFrame {
         if (chk6.isSelected()) {
             txtAtr6.setEnabled(true);
             cmbPry6.setEnabled(true);
-            if(chk1.isSelected()){
-                    cmbOp1.setEnabled(true);
-            } 
-            else{
-                cmbOp1.setEnabled(false);
-            }
-            if(chk2.isSelected()){
-                    cmbOp2.setEnabled(true);
-            } 
-            else{
-                cmbOp2.setEnabled(false);
-            }
-            if(chk3.isSelected()){
-                    cmbOp3.setEnabled(true);
-            } 
-            else{
-                cmbOp3.setEnabled(false);
-            }
-            if(chk4.isSelected()){
-                    cmbOp4.setEnabled(true);
-            } 
-            else{
-                cmbOp4.setEnabled(false);
-            }
-            if(chk5.isSelected()){
-                    cmbOp5.setEnabled(true);
-            } 
-            else{
-                cmbOp5.setEnabled(false);
-            }
-        }
-        else {
-            cmbOp5.setEnabled(false);
+        } else {
             txtAtr6.setEnabled(false);
             cmbPry6.setEnabled(false);
-            if(cmbOp1.isEnabled() && (!chk2.isSelected()&&!chk3.isSelected()&&!chk4.isSelected()&&!chk5.isSelected())){
-                cmbOp1.setEnabled(false);
-            }
-            if(cmbOp2.isEnabled() && (!chk3.isSelected()&&!chk4.isSelected()&&!chk5.isSelected())){
-                cmbOp2.setEnabled(false);
-            }
-             if(cmbOp3.isEnabled() && (!chk4.isSelected()&&!chk5.isSelected())){
-                cmbOp3.setEnabled(false);
-            }
-             if(cmbOp4.isEnabled() && !chk5.isSelected()){
-                cmbOp4.setEnabled(false);
-            }
         }
     }//GEN-LAST:event_chk6ActionPerformed
 
@@ -769,23 +596,11 @@ public class ConsultasBasicas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAtr6ActionPerformed
 
-    private void cmbOp5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOp5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbOp5ActionPerformed
-
     private void chk1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk1ActionPerformed
         if (chk1.isSelected()) {
             txtAtr1.setEnabled(true);
             cmbPry1.setEnabled(true);
-            if(chk2.isSelected() || chk3.isSelected() || chk4.isSelected() || chk5.isSelected() || chk6.isSelected()){
-                    cmbOp1.setEnabled(true);
-                } 
-            else{
-                cmbOp1.setEnabled(false);
-            }
-        }
-        else {
-            cmbOp1.setEnabled(false);
+        } else {
             txtAtr1.setEnabled(false);
             cmbPry1.setEnabled(false);
         }
@@ -795,317 +610,251 @@ public class ConsultasBasicas extends javax.swing.JFrame {
         JCheckBox[] CkbAtr = {chk1, chk2, chk3, chk4, chk5, chk6};
         JCheckBox[] CkbExc = {chkExcl1, chkExcl2, chkExcl3, chkExcl4, chkExcl5, chkExcl6};
         JComboBox[] CmbAtr = {cmbPry1, cmbPry2, cmbPry3, cmbPry4, cmbPry5, cmbPry6};
-        JComboBox[] CmbOp = {cmbOp1, cmbOp2, cmbOp3, cmbOp4, cmbOp5};
         JTextField[] txtAtr = {txtAtr1, txtAtr2, txtAtr3, txtAtr4, txtAtr5, txtAtr6};
-        
-        for(int contador = 0; contador < CkbAtr.length; contador++){
+
+        for (int contador = 0; contador < CkbAtr.length; contador++) {
             CkbAtr[contador].setSelected(false);
             CkbExc[contador].setSelected(false);
             CmbAtr[contador].setSelectedIndex(0);
             txtAtr[contador].setText("");
             CmbAtr[contador].setEnabled(false);
             txtAtr[contador].setEnabled(false);
-            if (contador < CmbOp.length){
-                CmbOp[contador].setSelectedIndex(0);
-            }
+            cmbOpCen.setSelectedIndex(0);
         }
-        
+
         switch (cmbColeccion.getSelectedItem().toString()) {
-            
+
             case "Empleados":
                 cmbOrder.setModel(new DefaultComboBoxModel<>(AtrEmp));
-                for(int contador = 0; contador < CkbAtr.length; contador++){
-                   if (contador < AtrEmp.length){
-                       CkbAtr[contador].setText(AtrEmp[contador]);
-                       CkbExc[contador].setText(AtrEmp[contador]);
-                       
-                       CkbAtr[contador].setEnabled(true);
-                       CkbAtr[contador].setVisible(true);
-                       CkbExc[contador].setVisible(true);
-                       CkbExc[contador].setEnabled(true);
-                       
-                       CmbAtr[contador].setVisible(true);
-                       txtAtr[contador].setVisible(true);
-                       if (contador < CmbOp.length){
-                            CmbOp[contador].setVisible(true);
-                       }
-                   }
-                   else{
-                       CkbAtr[contador].setEnabled(false);
-                       CkbAtr[contador].setVisible(false);
-                       CkbExc[contador].setVisible(false);
-                       CkbExc[contador].setEnabled(false);
-                       
-                       CmbAtr[contador].setVisible(false);
-                       txtAtr[contador].setVisible(false);
-                       if (contador < CmbOp.length){
-                            CmbOp[contador].setVisible(false);
-                       }
-                   }
+                for (int contador = 0; contador < CkbAtr.length; contador++) {
+                    if (contador < AtrEmp.length) {
+                        CkbAtr[contador].setText(AtrEmp[contador]);
+                        CkbExc[contador].setText(AtrEmp[contador]);
+
+                        CkbAtr[contador].setEnabled(true);
+                        CkbAtr[contador].setVisible(true);
+                        CkbExc[contador].setVisible(true);
+                        CkbExc[contador].setEnabled(true);
+
+                        CmbAtr[contador].setVisible(true);
+                        txtAtr[contador].setVisible(true);
+                    } else {
+                        CkbAtr[contador].setEnabled(false);
+                        CkbAtr[contador].setVisible(false);
+                        CkbExc[contador].setVisible(false);
+                        CkbExc[contador].setEnabled(false);
+
+                        CmbAtr[contador].setVisible(false);
+                        txtAtr[contador].setVisible(false);
+                    }
                 }
                 break;
-                
-                case "Proveedores":
+
+            case "Proveedores":
                 cmbOrder.setModel(new DefaultComboBoxModel<>(AtrPro));
-                for(int contador = 0; contador < CkbAtr.length; contador++){
-                   if (contador < AtrPro.length){
-                       CkbAtr[contador].setText(AtrPro[contador]);
-                       CkbExc[contador].setText(AtrPro[contador]);
-                       
-                       CkbAtr[contador].setEnabled(true);
-                       CkbAtr[contador].setVisible(true);
-                       CkbExc[contador].setVisible(true);
-                       CkbExc[contador].setEnabled(true);
-                       
-                       CmbAtr[contador].setVisible(true);
-                       txtAtr[contador].setVisible(true);
-                       if (contador < CmbOp.length){
-                            CmbOp[contador].setVisible(true);
-                       }
-                   }
-                   else{
-                       CkbAtr[contador].setEnabled(false);
-                       CkbAtr[contador].setVisible(false);
-                       CkbExc[contador].setVisible(false);
-                       CkbExc[contador].setEnabled(false);
-                       
-                       CmbAtr[contador].setVisible(false);
-                       txtAtr[contador].setVisible(false);
-                       if (contador < CmbOp.length){
-                            CmbOp[contador].setVisible(false);
-                       }
-                   }
+                for (int contador = 0; contador < CkbAtr.length; contador++) {
+                    if (contador < AtrPro.length) {
+                        CkbAtr[contador].setText(AtrPro[contador]);
+                        CkbExc[contador].setText(AtrPro[contador]);
+
+                        CkbAtr[contador].setEnabled(true);
+                        CkbAtr[contador].setVisible(true);
+                        CkbExc[contador].setVisible(true);
+                        CkbExc[contador].setEnabled(true);
+
+                        CmbAtr[contador].setVisible(true);
+                        txtAtr[contador].setVisible(true);
+                    } else {
+                        CkbAtr[contador].setEnabled(false);
+                        CkbAtr[contador].setVisible(false);
+                        CkbExc[contador].setVisible(false);
+                        CkbExc[contador].setEnabled(false);
+
+                        CmbAtr[contador].setVisible(false);
+                        txtAtr[contador].setVisible(false);
+                    }
                 }
                 break;
-                
-                case "Compras":
+
+            case "Compras":
                 cmbOrder.setModel(new DefaultComboBoxModel<>(AtrCom));
-                for(int contador = 0; contador < CkbAtr.length; contador++){
-                   if (contador < AtrCom.length){
-                       CkbAtr[contador].setText(AtrCom[contador]);
-                       CkbExc[contador].setText(AtrCom[contador]);
-                       
-                       CkbAtr[contador].setEnabled(true);
-                       CkbAtr[contador].setVisible(true);
-                       CkbExc[contador].setVisible(true);
-                       CkbExc[contador].setEnabled(true);
-                       
-                       CmbAtr[contador].setVisible(true);
-                       txtAtr[contador].setVisible(true);
-                       if (contador < CmbOp.length){
-                            CmbOp[contador].setVisible(true);
-                       }
-                   }
-                   else{
-                       CkbAtr[contador].setEnabled(false);
-                       CkbAtr[contador].setVisible(false);
-                       CkbExc[contador].setVisible(false);
-                       CkbExc[contador].setEnabled(false);
-                       
-                       CmbAtr[contador].setVisible(false);
-                       txtAtr[contador].setVisible(false);
-                       if (contador < CmbOp.length){
-                            CmbOp[contador].setVisible(false);
-                       }
-                   }
+                for (int contador = 0; contador < CkbAtr.length; contador++) {
+                    if (contador < AtrCom.length) {
+                        CkbAtr[contador].setText(AtrCom[contador]);
+                        CkbExc[contador].setText(AtrCom[contador]);
+
+                        CkbAtr[contador].setEnabled(true);
+                        CkbAtr[contador].setVisible(true);
+                        CkbExc[contador].setVisible(true);
+                        CkbExc[contador].setEnabled(true);
+
+                        CmbAtr[contador].setVisible(true);
+                        txtAtr[contador].setVisible(true);
+                    } else {
+                        CkbAtr[contador].setEnabled(false);
+                        CkbAtr[contador].setVisible(false);
+                        CkbExc[contador].setVisible(false);
+                        CkbExc[contador].setEnabled(false);
+
+                        CmbAtr[contador].setVisible(false);
+                        txtAtr[contador].setVisible(false);
+                    }
                 }
                 break;
-                
-                case "Compras - Articulos":
+
+            case "Compras - Articulos":
                 cmbOrder.setModel(new DefaultComboBoxModel<>(AtrCoA));
-                for(int contador = 0; contador < CkbAtr.length; contador++){
-                   if (contador < AtrCoA.length){
-                       CkbAtr[contador].setText(AtrCoA[contador]);
-                       CkbExc[contador].setText(AtrCoA[contador]);
-                       
-                       CkbAtr[contador].setEnabled(true);
-                       CkbAtr[contador].setVisible(true);
-                       CkbExc[contador].setVisible(true);
-                       CkbExc[contador].setEnabled(true);
-                       
-                       CmbAtr[contador].setVisible(true);
-                       txtAtr[contador].setVisible(true);
-                       if (contador < CmbOp.length){
-                            CmbOp[contador].setVisible(true);
-                       }
-                   }
-                   else{
-                       CkbAtr[contador].setEnabled(false);
-                       CkbAtr[contador].setVisible(false);
-                       CkbExc[contador].setVisible(false);
-                       CkbExc[contador].setEnabled(false);
-                       
-                       CmbAtr[contador].setVisible(false);
-                       txtAtr[contador].setVisible(false);
-                       if (contador < CmbOp.length){
-                            CmbOp[contador].setVisible(false);
-                       }
-                   }
+                for (int contador = 0; contador < CkbAtr.length; contador++) {
+                    if (contador < AtrCoA.length) {
+                        CkbAtr[contador].setText(AtrCoA[contador]);
+                        CkbExc[contador].setText(AtrCoA[contador]);
+
+                        CkbAtr[contador].setEnabled(true);
+                        CkbAtr[contador].setVisible(true);
+                        CkbExc[contador].setVisible(true);
+                        CkbExc[contador].setEnabled(true);
+
+                        CmbAtr[contador].setVisible(true);
+                        txtAtr[contador].setVisible(true);
+                    } else {
+                        CkbAtr[contador].setEnabled(false);
+                        CkbAtr[contador].setVisible(false);
+                        CkbExc[contador].setVisible(false);
+                        CkbExc[contador].setEnabled(false);
+
+                        CmbAtr[contador].setVisible(false);
+                        txtAtr[contador].setVisible(false);
+                    }
                 }
                 break;
-                
-                case "Articulos":
+
+            case "Articulos":
                 cmbOrder.setModel(new DefaultComboBoxModel<>(AtrArt));
-                for(int contador = 0; contador < CkbAtr.length; contador++){
-                   if (contador < AtrArt.length){
-                       CkbAtr[contador].setText(AtrArt[contador]);
-                       CkbExc[contador].setText(AtrArt[contador]);
-                       
-                       CkbAtr[contador].setEnabled(true);
-                       CkbAtr[contador].setVisible(true);
-                       CkbExc[contador].setVisible(true);
-                       CkbExc[contador].setEnabled(true);
-                       
-                       CmbAtr[contador].setVisible(true);
-                       txtAtr[contador].setVisible(true);
-                       if (contador < CmbOp.length){
-                            CmbOp[contador].setVisible(true);
-                       }
-                   }
-                   else{
-                       CkbAtr[contador].setEnabled(false);
-                       CkbAtr[contador].setVisible(false);
-                       CkbExc[contador].setVisible(false);
-                       CkbExc[contador].setEnabled(false);
-                       
-                       CmbAtr[contador].setVisible(false);
-                       txtAtr[contador].setVisible(false);
-                       if (contador < CmbOp.length){
-                            CmbOp[contador].setVisible(false);
-                       }
-                   }
+                for (int contador = 0; contador < CkbAtr.length; contador++) {
+                    if (contador < AtrArt.length) {
+                        CkbAtr[contador].setText(AtrArt[contador]);
+                        CkbExc[contador].setText(AtrArt[contador]);
+
+                        CkbAtr[contador].setEnabled(true);
+                        CkbAtr[contador].setVisible(true);
+                        CkbExc[contador].setVisible(true);
+                        CkbExc[contador].setEnabled(true);
+
+                        CmbAtr[contador].setVisible(true);
+                        txtAtr[contador].setVisible(true);
+                    } else {
+                        CkbAtr[contador].setEnabled(false);
+                        CkbAtr[contador].setVisible(false);
+                        CkbExc[contador].setVisible(false);
+                        CkbExc[contador].setEnabled(false);
+
+                        CmbAtr[contador].setVisible(false);
+                        txtAtr[contador].setVisible(false);
+                    }
                 }
                 break;
-                
-                case "Articulos - Ventas":
+
+            case "Articulos - Ventas":
                 cmbOrder.setModel(new DefaultComboBoxModel<>(AtrArV));
-                for(int contador = 0; contador < CkbAtr.length; contador++){
-                   if (contador < AtrArV.length){
-                       CkbAtr[contador].setText(AtrArV[contador]);
-                       CkbExc[contador].setText(AtrArV[contador]);
-                       
-                       CkbAtr[contador].setEnabled(true);
-                       CkbAtr[contador].setVisible(true);
-                       CkbExc[contador].setVisible(true);
-                       CkbExc[contador].setEnabled(true);
-                       
-                       CmbAtr[contador].setVisible(true);
-                       txtAtr[contador].setVisible(true);
-                       if (contador < CmbOp.length){
-                            CmbOp[contador].setVisible(true);
-                       }
-                   }
-                   else{
-                       CkbAtr[contador].setEnabled(false);
-                       CkbAtr[contador].setVisible(false);
-                       CkbExc[contador].setVisible(false);
-                       CkbExc[contador].setEnabled(false);
-                       
-                       CmbAtr[contador].setVisible(false);
-                       txtAtr[contador].setVisible(false);
-                       if (contador < CmbOp.length){
-                            CmbOp[contador].setVisible(false);
-                       }
-                   }
+                for (int contador = 0; contador < CkbAtr.length; contador++) {
+                    if (contador < AtrArV.length) {
+                        CkbAtr[contador].setText(AtrArV[contador]);
+                        CkbExc[contador].setText(AtrArV[contador]);
+
+                        CkbAtr[contador].setEnabled(true);
+                        CkbAtr[contador].setVisible(true);
+                        CkbExc[contador].setVisible(true);
+                        CkbExc[contador].setEnabled(true);
+
+                        CmbAtr[contador].setVisible(true);
+                        txtAtr[contador].setVisible(true);
+                    } else {
+                        CkbAtr[contador].setEnabled(false);
+                        CkbAtr[contador].setVisible(false);
+                        CkbExc[contador].setVisible(false);
+                        CkbExc[contador].setEnabled(false);
+
+                        CmbAtr[contador].setVisible(false);
+                        txtAtr[contador].setVisible(false);
+                    }
                 }
                 break;
-                
-                case "Ventas":
+
+            case "Ventas":
                 cmbOrder.setModel(new DefaultComboBoxModel<>(AtrVen));
-                for(int contador = 0; contador < CkbAtr.length; contador++){
-                   if (contador < AtrVen.length){
-                       CkbAtr[contador].setText(AtrVen[contador]);
-                       CkbExc[contador].setText(AtrVen[contador]);
-                       
-                       CkbAtr[contador].setEnabled(true);
-                       CkbAtr[contador].setVisible(true);
-                       CkbExc[contador].setVisible(true);
-                       CkbExc[contador].setEnabled(true);
-                       
-                       CmbAtr[contador].setVisible(true);
-                       txtAtr[contador].setVisible(true);
-                       if (contador < CmbOp.length){
-                            CmbOp[contador].setVisible(true);
-                       }
-                   }
-                   else{
-                       CkbAtr[contador].setEnabled(false);
-                       CkbAtr[contador].setVisible(false);
-                       CkbExc[contador].setVisible(false);
-                       CkbExc[contador].setEnabled(false);
-                       
-                       CmbAtr[contador].setVisible(false);
-                       txtAtr[contador].setVisible(false);
-                       if (contador < CmbOp.length){
-                            CmbOp[contador].setVisible(false);
-                       }
-                   }
+                for (int contador = 0; contador < CkbAtr.length; contador++) {
+                    if (contador < AtrVen.length) {
+                        CkbAtr[contador].setText(AtrVen[contador]);
+                        CkbExc[contador].setText(AtrVen[contador]);
+
+                        CkbAtr[contador].setEnabled(true);
+                        CkbAtr[contador].setVisible(true);
+                        CkbExc[contador].setVisible(true);
+                        CkbExc[contador].setEnabled(true);
+
+                        CmbAtr[contador].setVisible(true);
+                        txtAtr[contador].setVisible(true);
+                    } else {
+                        CkbAtr[contador].setEnabled(false);
+                        CkbAtr[contador].setVisible(false);
+                        CkbExc[contador].setVisible(false);
+                        CkbExc[contador].setEnabled(false);
+
+                        CmbAtr[contador].setVisible(false);
+                        txtAtr[contador].setVisible(false);
+                    }
                 }
                 break;
-                
-                case "Clientes":
+
+            case "Clientes":
                 cmbOrder.setModel(new DefaultComboBoxModel<>(AtrCli));
-                for(int contador = 0; contador < CkbAtr.length; contador++){
-                   if (contador < AtrCli.length){
-                       CkbAtr[contador].setText(AtrCli[contador]);
-                       CkbExc[contador].setText(AtrCli[contador]);
-                       
-                       CkbAtr[contador].setEnabled(true);
-                       CkbAtr[contador].setVisible(true);
-                       CkbExc[contador].setVisible(true);
-                       CkbExc[contador].setEnabled(true);
-                       
-                       CmbAtr[contador].setVisible(true);
-                       txtAtr[contador].setVisible(true);
-                       if (contador < CmbOp.length){
-                            CmbOp[contador].setVisible(true);
-                       }
-                   }
-                   else{
-                       CkbAtr[contador].setEnabled(false);
-                       CkbAtr[contador].setVisible(false);
-                       CkbExc[contador].setVisible(false);
-                       CkbExc[contador].setEnabled(false);
-                       
-                       CmbAtr[contador].setVisible(false);
-                       txtAtr[contador].setVisible(false);
-                       if (contador < CmbOp.length){
-                            CmbOp[contador].setVisible(false);
-                       }
-                   }
+                for (int contador = 0; contador < CkbAtr.length; contador++) {
+                    if (contador < AtrCli.length) {
+                        CkbAtr[contador].setText(AtrCli[contador]);
+                        CkbExc[contador].setText(AtrCli[contador]);
+
+                        CkbAtr[contador].setEnabled(true);
+                        CkbAtr[contador].setVisible(true);
+                        CkbExc[contador].setVisible(true);
+                        CkbExc[contador].setEnabled(true);
+
+                        CmbAtr[contador].setVisible(true);
+                        txtAtr[contador].setVisible(true);
+                    } else {
+                        CkbAtr[contador].setEnabled(false);
+                        CkbAtr[contador].setVisible(false);
+                        CkbExc[contador].setVisible(false);
+                        CkbExc[contador].setEnabled(false);
+
+                        CmbAtr[contador].setVisible(false);
+                        txtAtr[contador].setVisible(false);
+                    }
                 }
                 break;
-                
-                case "Tiendas":
+
+            case "Tiendas":
                 cmbOrder.setModel(new DefaultComboBoxModel<>(AtrTie));
-                for(int contador = 0; contador < CkbAtr.length; contador++){
-                   if (contador < AtrTie.length){
-                       CkbAtr[contador].setText(AtrTie[contador]);
-                       CkbExc[contador].setText(AtrTie[contador]);
-                       
-                       CkbAtr[contador].setEnabled(true);
-                       CkbAtr[contador].setVisible(true);
-                       CkbExc[contador].setVisible(true);
-                       CkbExc[contador].setEnabled(true);
-                       
-                       CmbAtr[contador].setVisible(true);
-                       txtAtr[contador].setVisible(true);
-                       if (contador < CmbOp.length){
-                            CmbOp[contador].setVisible(true);
-                       }
-                   }
-                   else{
-                       CkbAtr[contador].setEnabled(false);
-                       CkbAtr[contador].setVisible(false);
-                       CkbExc[contador].setVisible(false);
-                       CkbExc[contador].setEnabled(false);
-                       
-                       CmbAtr[contador].setVisible(false);
-                       txtAtr[contador].setVisible(false);
-                       if (contador < CmbOp.length){
-                            CmbOp[contador].setVisible(false);
-                       }
-                   }
+                for (int contador = 0; contador < CkbAtr.length; contador++) {
+                    if (contador < AtrTie.length) {
+                        CkbAtr[contador].setText(AtrTie[contador]);
+                        CkbExc[contador].setText(AtrTie[contador]);
+
+                        CkbAtr[contador].setEnabled(true);
+                        CkbAtr[contador].setVisible(true);
+                        CkbExc[contador].setVisible(true);
+                        CkbExc[contador].setEnabled(true);
+
+                        CmbAtr[contador].setVisible(true);
+                        txtAtr[contador].setVisible(true);
+                    } else {
+                        CkbAtr[contador].setEnabled(false);
+                        CkbAtr[contador].setVisible(false);
+                        CkbExc[contador].setVisible(false);
+                        CkbExc[contador].setEnabled(false);
+
+                        CmbAtr[contador].setVisible(false);
+                        txtAtr[contador].setVisible(false);
+                    }
                 }
                 break;
         }
@@ -1117,16 +866,118 @@ public class ConsultasBasicas extends javax.swing.JFrame {
 
     private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
         String Coleccion = cmbColeccion.getSelectedItem().toString();
-        MongoCollection<org.bson.Document> collection = BaseDatos.getCollection(Coleccion);
-        
-        BasicDBObject busqueda = new BasicDBObject();
-        busqueda.put("ID_Tienda", 3);
-        
-        MongoCursor<Document> Cursor = collection.find(busqueda).iterator();
-        while(Cursor.hasNext()){
-            System.out.println(Cursor.next());
+        String[] AtrUsar = null;
+        Bson filtro1 = null, filtro2 = null, filtro3 = null, filtro4 = null, filtro5 = null, filtro6 = null, filtroConjunto = null;
+        JCheckBox[] CkbAtr = {chk1, chk2, chk3, chk4, chk5, chk6};
+        JComboBox[] CmbAtr = {cmbPry1, cmbPry2, cmbPry3, cmbPry4, cmbPry5, cmbPry6};
+        JTextField[] txtAtr = {txtAtr1, txtAtr2, txtAtr3, txtAtr4, txtAtr5, txtAtr6};
+
+        switch (cmbColeccion.getSelectedIndex()) {
+            case 0:
+                AtrUsar = Emp;
+                break;
+
+            case 1:
+                AtrUsar = Pro;
+                break;
+
+            case 2:
+                AtrUsar = Com;
+                break;
+
+            case 3:
+                AtrUsar = CoA;
+                break;
+
+            case 4:
+                AtrUsar = Art;
+                break;
+
+            case 5:
+                AtrUsar = ArV;
+                break;
+
+            case 6:
+                AtrUsar = Ven;
+                break;
+
+            case 7:
+                AtrUsar = Cli;
+                break;
+
+            case 8:
+                AtrUsar = Tie;
+                break;
         }
+
+        MongoCollection<org.bson.Document> collection = BaseDatos.getCollection(Coleccion);
+        int Contador = 0;
+        Bson[] Filtros = new Bson[AtrUsar.length];
+
+        for (int a = 0; a < AtrUsar.length; a++) {
+            if (CkbAtr[a].isSelected()) {
+                switch (CmbAtr[a].getSelectedIndex()) {
+                    case 0:
+                        Filtros[a] = Filters.eq(AtrUsar[a], txtAtr[a].getText());
+                        break;
+
+                    case 1:
+                        Filtros[a] = Filters.ne(AtrUsar[a], txtAtr[a].getText());
+                        break;
+
+                    case 2:
+                        Filtros[a] = Filters.gt(AtrUsar[a], txtAtr[a].getText());
+                        break;
+
+                    case 3:
+                        Filtros[a] = Filters.gte(AtrUsar[a], txtAtr[a].getText());
+                        break;
+
+                    case 4:
+                        Filtros[a] = Filters.lt(AtrUsar[a], txtAtr[a].getText());
+                        break;
+
+                    case 5:
+                        Filtros[a] = Filters.lte(AtrUsar[a], txtAtr[a].getText());
+                        break;
+
+                    case 6:
+                        Filtros[a] = Filters.in(AtrUsar[a], txtAtr[a].getText());
+                        break;
+
+                    case 7:
+                        Filtros[a] = Filters.nin(AtrUsar[a], txtAtr[a].getText());
+                        break;
+                }
+                Contador++;
+                frmResultados.setVisible(true);
+                System.err.println(Contador);
+                MongoCursor<Document> Cursor = collection.find(Filtros[a]).batchSize(1000).iterator();
+                while (Cursor.hasNext()) {
+                    System.out.println(Cursor.next());
+                    txaRes.setText(txaRes.getText()+"\n"+Cursor.next());
+                }
+            }
+        }
+                /*MongoCursor<Document> Cursor = collection.find(Filters.and(Filtros[0],Filtros[1], Filtros[2], Filtros[3], Filtros[4])).iterator();
+                while (Cursor.hasNext()) {
+                    System.out.println(Cursor.next());
+                    txaRes.setText(txaRes.getText()+"\n"+Cursor.next());
+                } */
+                
+
+        /*if (contador == 1) {
+            MongoCursor<Document> Cursor = collection.find(Filtros[0]).iterator();
+            while (Cursor.hasNext()) {
+                System.out.println(Cursor.next());
+            }
+        }*/
+
     }//GEN-LAST:event_btnConsultaActionPerformed
+
+    private void frmResultadosComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_frmResultadosComponentShown
+        this.setLocationRelativeTo(null);
+    }//GEN-LAST:event_frmResultadosComponentShown
 
     /**
      * @param args the command line arguments
@@ -1178,11 +1029,7 @@ public class ConsultasBasicas extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkExcl5;
     private javax.swing.JCheckBox chkExcl6;
     private javax.swing.JComboBox<String> cmbColeccion;
-    private javax.swing.JComboBox<String> cmbOp1;
-    private javax.swing.JComboBox<String> cmbOp2;
-    private javax.swing.JComboBox<String> cmbOp3;
-    private javax.swing.JComboBox<String> cmbOp4;
-    private javax.swing.JComboBox<String> cmbOp5;
+    private javax.swing.JComboBox<String> cmbOpCen;
     private javax.swing.JComboBox<String> cmbOrder;
     private javax.swing.JComboBox<String> cmbPry1;
     private javax.swing.JComboBox<String> cmbPry2;
@@ -1190,10 +1037,13 @@ public class ConsultasBasicas extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbPry4;
     private javax.swing.JComboBox<String> cmbPry5;
     private javax.swing.JComboBox<String> cmbPry6;
+    private javax.swing.JFrame frmResultados;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCampoFecha;
     private javax.swing.JLabel lblConstructor;
+    private javax.swing.JLabel lblConstructor1;
     private javax.swing.JLabel lblExcluir;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblLogoTienda;
@@ -1208,6 +1058,7 @@ public class ConsultasBasicas extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbAsc;
     private javax.swing.JRadioButton rbDes;
     private javax.swing.ButtonGroup rbgOrden;
+    private javax.swing.JTextArea txaRes;
     private javax.swing.JTextField txtAtr1;
     private javax.swing.JTextField txtAtr2;
     private javax.swing.JTextField txtAtr3;

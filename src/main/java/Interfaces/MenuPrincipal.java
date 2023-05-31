@@ -26,7 +26,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lblMiniSuper = new javax.swing.JLabel();
         btnCerrar = new javax.swing.JButton();
         btnVentas = new javax.swing.JButton();
-        btnArticulos = new javax.swing.JButton();
         btnConsultasBas = new javax.swing.JButton();
         pInfo = new javax.swing.JPanel();
         lblInfo = new javax.swing.JLabel();
@@ -62,30 +61,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         pCapaBase.add(btnCerrar);
-        btnCerrar.setBounds(280, 340, 170, 60);
+        btnCerrar.setBounds(160, 280, 170, 110);
 
         btnVentas.setFont(new java.awt.Font("Tw Cen MT", 1, 22)); // NOI18N
-        btnVentas.setText("<html>Consultas<br>Avanzadas</html>");
+        btnVentas.setText("<html>Consultas<br>Predeterminadas</html>");
+        btnVentas.setActionCommand("<html>Consultas<br>Predeterminadas</html>");
         btnVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVentasActionPerformed(evt);
             }
         });
         pCapaBase.add(btnVentas);
-        btnVentas.setBounds(280, 150, 170, 60);
-
-        btnArticulos.setFont(new java.awt.Font("Tw Cen MT", 1, 22)); // NOI18N
-        btnArticulos.setText("Backups");
-        btnArticulos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnArticulosActionPerformed(evt);
-            }
-        });
-        pCapaBase.add(btnArticulos);
-        btnArticulos.setBounds(40, 340, 170, 60);
+        btnVentas.setBounds(280, 150, 170, 110);
 
         btnConsultasBas.setFont(new java.awt.Font("Tw Cen MT", 1, 22)); // NOI18N
-        btnConsultasBas.setText("<html>Consultas<br>Basicas</html>");
+        btnConsultasBas.setText("<html>Consultas</html>");
         btnConsultasBas.setActionCommand("");
         btnConsultasBas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +83,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         pCapaBase.add(btnConsultasBas);
-        btnConsultasBas.setBounds(40, 150, 170, 60);
+        btnConsultasBas.setBounds(40, 150, 170, 110);
 
         pInfo.setBackground(new java.awt.Color(255, 255, 255));
         pInfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -156,10 +146,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnVentasActionPerformed
 
-    private void btnArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArticulosActionPerformed
-
-    }//GEN-LAST:event_btnArticulosActionPerformed
-
     private void btnConsultasBasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultasBasActionPerformed
         ConsultasBasicas frmConsultasBasicas = new ConsultasBasicas();
         frmConsultasBasicas.setVisible(true);
@@ -202,7 +188,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnArticulos;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnConsultasBas;
     private javax.swing.JButton btnVentas;
