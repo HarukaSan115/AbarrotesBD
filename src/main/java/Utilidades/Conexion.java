@@ -40,7 +40,7 @@ public class Conexion {
                 Bson command = new BsonDocument("ping", new BsonInt64(1));
                 Document commandResult = BaseDatos.runCommand(command);
                 System.out.println("Pinged your deployment. You successfully connected to MongoDB!");
-                JOptionPane.showMessageDialog(null, "Usuario Autenticado\nBienvenido "+User+", Accediendo al sistema", "Error", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Usuario Autenticado\nBienvenido "+User+", Accediendo al sistema", "Autenticacion Completada", JOptionPane.INFORMATION_MESSAGE);
             
             } catch (MongoException me) {
                 Mongo = null;

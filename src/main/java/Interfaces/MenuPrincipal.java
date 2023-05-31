@@ -1,12 +1,15 @@
 package Interfaces;
+
 import javax.swing.JOptionPane;
 import Utilidades.FechayHora;
+
 public class MenuPrincipal extends javax.swing.JFrame {
+
     public MenuPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
         FechayHora Forma = new FechayHora();
-        lblInfo.setText("Se ha accedido al sistema con el usuario ( " + Utilidades.Conexion.User +" ) el " + Forma.ObtenerFormato());
+        lblInfo.setText("Se ha accedido al sistema con el usuario ( " + Utilidades.Conexion.User + " ) el " + Forma.ObtenerFormato());
     }
 
     /**
@@ -23,10 +26,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lblMiniSuper = new javax.swing.JLabel();
         btnCerrar = new javax.swing.JButton();
         btnVentas = new javax.swing.JButton();
-        btnEmpleados = new javax.swing.JButton();
         btnArticulos = new javax.swing.JButton();
-        btnCompras = new javax.swing.JButton();
-        btnVentasArti = new javax.swing.JButton();
+        btnConsultasBas = new javax.swing.JButton();
         pInfo = new javax.swing.JPanel();
         lblInfo = new javax.swing.JLabel();
         lblLogoTienda = new javax.swing.JLabel();
@@ -64,7 +65,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnCerrar.setBounds(280, 340, 170, 60);
 
         btnVentas.setFont(new java.awt.Font("Tw Cen MT", 1, 22)); // NOI18N
-        btnVentas.setText("<html>Añadir<br>Registros</html>");
+        btnVentas.setText("<html>Consultas<br>Avanzadas</html>");
         btnVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVentasActionPerformed(evt);
@@ -72,16 +73,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         pCapaBase.add(btnVentas);
         btnVentas.setBounds(280, 150, 170, 60);
-
-        btnEmpleados.setFont(new java.awt.Font("Tw Cen MT", 1, 22)); // NOI18N
-        btnEmpleados.setText("<html>Eliminar<br>Registros</html>");
-        btnEmpleados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEmpleadosActionPerformed(evt);
-            }
-        });
-        pCapaBase.add(btnEmpleados);
-        btnEmpleados.setBounds(280, 240, 170, 60);
 
         btnArticulos.setFont(new java.awt.Font("Tw Cen MT", 1, 22)); // NOI18N
         btnArticulos.setText("Backups");
@@ -93,30 +84,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pCapaBase.add(btnArticulos);
         btnArticulos.setBounds(40, 340, 170, 60);
 
-        btnCompras.setFont(new java.awt.Font("Tw Cen MT", 1, 22)); // NOI18N
-        btnCompras.setText("Consultas");
-        btnCompras.setActionCommand("");
-        btnCompras.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultasBas.setFont(new java.awt.Font("Tw Cen MT", 1, 22)); // NOI18N
+        btnConsultasBas.setText("<html>Consultas<br>Basicas</html>");
+        btnConsultasBas.setActionCommand("");
+        btnConsultasBas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnComprasActionPerformed(evt);
+                btnConsultasBasActionPerformed(evt);
             }
         });
-        pCapaBase.add(btnCompras);
-        btnCompras.setBounds(40, 150, 170, 60);
-
-        btnVentasArti.setFont(new java.awt.Font("Tw Cen MT", 1, 22)); // NOI18N
-        btnVentasArti.setText("<html>Actualizar<br>Registros</html>");
-        btnVentasArti.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnVentasArti.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVentasArtiActionPerformed(evt);
-            }
-        });
-        pCapaBase.add(btnVentasArti);
-        btnVentasArti.setBounds(40, 240, 170, 60);
+        pCapaBase.add(btnConsultasBas);
+        btnConsultasBas.setBounds(40, 150, 170, 60);
 
         pInfo.setBackground(new java.awt.Color(255, 255, 255));
-        pInfo.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        pInfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pInfo.setMinimumSize(new java.awt.Dimension(492, 20));
 
         lblInfo.setBackground(new java.awt.Color(255, 255, 255));
@@ -141,6 +121,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pInfo.setBounds(0, 430, 500, 20);
 
         lblLogoTienda.setIcon(new javax.swing.ImageIcon("../Imagenes/LogoTienda.jpg"));
+        lblLogoTienda.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         pCapaBase.add(lblLogoTienda);
         lblLogoTienda.setBounds(310, 10, 156, 50);
 
@@ -175,21 +156,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnVentasActionPerformed
 
-    private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
-
-    }//GEN-LAST:event_btnEmpleadosActionPerformed
-
     private void btnArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArticulosActionPerformed
 
     }//GEN-LAST:event_btnArticulosActionPerformed
 
-    private void btnComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasActionPerformed
-
-    }//GEN-LAST:event_btnComprasActionPerformed
-
-    private void btnVentasArtiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasArtiActionPerformed
-
-    }//GEN-LAST:event_btnVentasArtiActionPerformed
+    private void btnConsultasBasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultasBasActionPerformed
+        ConsultasBasicas frmConsultasBasicas = new ConsultasBasicas();
+        frmConsultasBasicas.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnConsultasBasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,10 +204,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnArticulos;
     private javax.swing.JButton btnCerrar;
-    private javax.swing.JButton btnCompras;
-    private javax.swing.JButton btnEmpleados;
+    private javax.swing.JButton btnConsultasBas;
     private javax.swing.JButton btnVentas;
-    private javax.swing.JButton btnVentasArti;
     private javax.swing.JLabel lblInfo;
     private javax.swing.JLabel lblLogoTienda;
     private javax.swing.JLabel lblMenu;
