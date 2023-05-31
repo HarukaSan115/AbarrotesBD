@@ -20,7 +20,7 @@ public class Conexion {
     public static String User;
     public static String Password;
     public static ConnectionString CadenaConexion;
-    public MongoDatabase BaseDatos = null;
+    public static MongoDatabase BaseDatos = null;
 
     public MongoClient CrearConexion(String Usuario, char[] Contraseña) {
         User = Usuario;
@@ -40,8 +40,9 @@ public class Conexion {
                 Bson command = new BsonDocument("ping", new BsonInt64(1));
                 Document commandResult = BaseDatos.runCommand(command);
                 System.out.println("Pinged your deployment. You successfully connected to MongoDB!");
+                BaseDatos = Mongo.getDatabase("Abarrotes");
                 JOptionPane.showMessageDialog(null, "Usuario Autenticado\nBienvenido "+User+", Accediendo al sistema", "Autenticacion Completada", JOptionPane.INFORMATION_MESSAGE);
-            
+                
             } catch (MongoException me) {
                 Mongo = null;
                 JOptionPane.showMessageDialog(null, "Ocurrio un error en la autenticacion\nIntentelo de nuevo", "Error", 0);
